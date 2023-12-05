@@ -1,0 +1,47 @@
+// create folder in root by name:   Utility 
+// create one class by name : EncryptionUtility
+// copy this methodes in that : MD5Hash(string input) , SHA128Hash(string input) , SHA128Hash(string input)
+// Now use in project
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProjectName.Utility
+{
+    public static class EncryptionUtility
+    {
+        public static string MD5Hash(string input)
+        {
+            using (var hasher = System.Security.Cryptography.MD5.Create())
+            {
+                var bytes = hasher.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));
+                var hash = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+                return hash;
+            }
+        }
+
+        public static string SHA128Hash(string input)
+        {
+            using (var hasher = System.Security.Cryptography.SHA1.Create())
+            {
+                var bytes = hasher.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));
+                var hash = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+                return hash;
+            }
+        }
+
+        public static string SHA256Hash(string input)
+        {
+            using (var hasher = System.Security.Cryptography.SHA256.Create())
+            {
+                var bytes = hasher.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));
+                var hash = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+                return hash;
+            }
+        }
+    }
+}
